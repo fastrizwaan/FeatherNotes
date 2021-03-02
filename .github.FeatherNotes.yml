@@ -1,0 +1,31 @@
+# io.github.FeatherNotes.yml
+
+# Build
+# sudo flatpak remote-add --if-not-exists flathub https://flathub.org/repo/flathub.flatpakrepo
+# sudo flatpak install sudo flatpak install org.kde.Sdk/x86_64/5.15
+# flatpak-builder --force-clean build-dir io.github.FeatherNotes.yml
+# flatpak-builder --install --user --force-clean build-dir io.github.FeatherNotes.yml
+
+# Run
+# flatpak run io.github.FeatherNotes
+
+app-id: io.github.FeatherNotes
+runtime: org.kde.Platform
+sdk: org.kde.Sdk
+runtime-version: '5.15'
+command: feathernotes
+rename-desktop-file: feathernotes.desktop
+rename-icon: feathernotes
+finish-args:
+- "--share=ipc"
+- "--socket=fallback-x11"
+- "--socket=wayland"
+- "--filesystem=home"
+
+modules:
+- name: FeatherNotes
+  buildsystem: qmake
+  sources:
+  - type: archive
+    url: https://github.com/tsujan/FeatherNotes/releases/download/V0.8.0/FeatherNotes-0.8.0.tar.xz
+    sha256: 9b9a85ce82e67001c5e7b575f09ad4a4d2c14501d79532c902d8d10d7043fc41
